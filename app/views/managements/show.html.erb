@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Role:</strong>
+  <%= @management.role %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @management.user_id %>
+</p>
+
+<p>
+  <strong>Property:</strong>
+  <%= @management.property_id %>
+</p>
+
+<%= link_to 'Edit', edit_management_path(@management) %> |
+<%= link_to 'Back', managements_path %>

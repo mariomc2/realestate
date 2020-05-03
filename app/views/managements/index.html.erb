@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Managements</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Role</th>
+      <th>User</th>
+      <th>Property</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @managements.each do |management| %>
+      <tr>
+        <td><%= management.role %></td>
+        <td><%= management.user_id %></td>
+        <td><%= management.property_id %></td>
+        <td><%= link_to 'Show', management %></td>
+        <td><%= link_to 'Edit', edit_management_path(management) %></td>
+        <td><%= link_to 'Destroy', management, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Management', new_management_path %>

@@ -141,50 +141,51 @@ Add to app/models/user.rb
     rails g controller pages home
 
 ---
-## Create Property:
-
-    rails generate scaffold Property identifier:string
-
---
 ## Create Building:
 
-    rails generate scaffold Building identifier:string name:string
+    rails generate scaffold Building type:integer identifier:string name:string
 
---
-## Create Management:
+---
+## Create Property:
 
-    rails generate scaffold Management role:integer user:belongs_to property:belongs_to
+    rails generate scaffold Property type:integer identifier:string building:belongs_to
 
---
+---
 ## Create Engagement:
 
     rails generate scaffold Engagement role:integer user:belongs_to building:belongs_to
 
---
+---
+## Create Management:
+
+    rails generate scaffold Management role:integer user:belongs_to property:belongs_to
+
+---
 ## Add the relationships to the models:
 
 #### User:
+	has_many :engagements
+	has_many :buildings, through: :engagements
+
 	has_many :managements
-  	has_many :properties, through: :managements
-
-  	has_many :engagements
-  	has_many :buildings, through: :engagements
-
-#### Management:
-	belongs_to :user
-  	belongs_to :property
+	has_many :properties, through: :managements
 
 #### Engagement:
 	belongs_to :user
   	belongs_to :building
 
-#### Property:
-	has_many :managements
-  	has_many :users, through: :managements
+#### Management:
+	belongs_to :user
+  	belongs_to :property
 
 #### Building:
 	has_many :engagements
-  	has_many :users, through: :engagements
+	has_many :users, through: :engagements
 
---
+#### Property:
+	belongs_to :building
+	has_many :managements
+	has_many :users, through: :managements
+
+---
 ## 
