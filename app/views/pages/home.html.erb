@@ -1,0 +1,11 @@
+<% if current_user %>
+  <% if current_user.role == 'self'%> 
+    <h3> Usuario Administrador</h3>
+  <% end %>
+  <%= current_user.role %>
+  <%#= link_to "Apartments", apartments_path, class: "btn btn-sm btn-outline-primary" %>
+  <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-sm btn-outline-danger" %>
+<% else %>
+  <%= link_to "Sign In", new_user_session_path, class: "btn btn-sm btn-primary" %>
+  <%= link_to  "Sign Up", new_user_registration_path, class: "btn btn-sm btn-outline-primary" %>
+<% end %>
